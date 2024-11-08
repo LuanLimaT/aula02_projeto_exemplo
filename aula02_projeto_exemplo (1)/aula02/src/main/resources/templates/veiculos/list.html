@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Veículos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Lista de Veículos</h1>
+
+    <!-- Botão para cadastrar novos veículos -->
+    <div class="mb-3">
+        <a th:href="@{/veiculos/form}" class="btn btn-primary">Cadastrar Novo Veículo</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Preço</th>
+            <th>Ano de Fabricação</th>
+            <th colspan="2">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="v : ${veiculos}">
+            <td th:text="${v.id}"> </td>
+            <td th:text="${v.marca}"> </td>
+            <td th:text="${v.modelo}"> </td>
+            <td th:text="${v.preco}"> </td>
+            <td th:text="${v.anoFabricacao}"> </td>
+            <td>
+                <a th:href="@{/veiculos/edit/{id}(id=${v.id})}" class="btn btn-warning">Editar</a>
+            </td>
+            <td>
+                <a onclick="return window.confirm('Tem certeza que deseja excluir este registro?')"
+                   th:href="@{/veiculos/remove/{id}(id=${v.id})}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>
